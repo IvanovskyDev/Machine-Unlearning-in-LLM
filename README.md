@@ -13,10 +13,10 @@
 | A. Подготовка: доступы, машина, инструменты | [`notebooks/A_setup.ipynb`](notebooks/A_setup.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/A_setup.ipynb) | работает |
 | B. Окружения Python: `unl` и `atk` | [`notebooks/B_environments.ipynb`](notebooks/B_environments.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/B_environments.ipynb) | работает |
 | C. Модели и данные TOFU | [`notebooks/C_models_data.ipynb`](notebooks/C_models_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/C_models_data.ipynb) | готов к запуску |
-| D. Первые запуски руками | — | следующая |
-| E–F. Репозиторий, пакет `urec`, вехи M0–M8 | — | |
+| D. Первые запуски руками | [`notebooks/D_first_runs.ipynb`](notebooks/D_first_runs.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/D_first_runs.ipynb) | готов к запуску |
+| E–F. Репозиторий, пакет `urec`, вехи M0–M8 | — | следующая |
 
-Что и зачем делает каждая строка, объяснено для новичка: части A и B — в [`docs/A_B_explained.md`](docs/A_B_explained.md), часть C — в [`docs/C_explained.md`](docs/C_explained.md).
+Что и зачем делает каждая строка, объяснено для новичка: части A и B — в [`docs/A_B_explained.md`](docs/A_B_explained.md), часть C — в [`docs/C_explained.md`](docs/C_explained.md), часть D — в [`docs/D_explained.md`](docs/D_explained.md).
 
 ## Как устроен проект
 
@@ -45,11 +45,13 @@ Machine-Unlearning-in-LLM/
 ├── .gitignore          # веса, чекпоинты, логи и секреты в git не попадают
 ├── docs/
 │   ├── A_B_explained.md       # разбор частей A и B для новичка
-│   └── C_explained.md         # разбор части C
+│   ├── C_explained.md         # разбор части C
+│   └── D_explained.md         # разбор части D
 └── notebooks/
     ├── A_setup.ipynb          # часть A
     ├── B_environments.ipynb   # часть B
-    └── C_models_data.ipynb    # часть C
+    ├── C_models_data.ipynb    # часть C
+    └── D_first_runs.ipynb     # часть D
 ```
 
 Дальше по плану (блок 20) появятся `src/urec/`, `configs/`, `tests/`, `scripts/`, `envs/` и `results/`.
