@@ -12,11 +12,11 @@
 |---|---|---|
 | A. Подготовка: доступы, машина, инструменты | [`notebooks/A_setup.ipynb`](notebooks/A_setup.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/A_setup.ipynb) | работает |
 | B. Окружения Python: `unl` и `atk` | [`notebooks/B_environments.ipynb`](notebooks/B_environments.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/B_environments.ipynb) | работает |
-| C. Модели и данные TOFU | — | следующая |
-| D. Первые запуски руками | — | |
+| C. Модели и данные TOFU | [`notebooks/C_models_data.ipynb`](notebooks/C_models_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/C_models_data.ipynb) | готов к запуску |
+| D. Первые запуски руками | — | следующая |
 | E–F. Репозиторий, пакет `urec`, вехи M0–M8 | — | |
 
-Что и зачем делает каждая строка частей A и B, объяснено для новичка в [`docs/A_B_explained.md`](docs/A_B_explained.md).
+Что и зачем делает каждая строка, объяснено для новичка: части A и B — в [`docs/A_B_explained.md`](docs/A_B_explained.md), часть C — в [`docs/C_explained.md`](docs/C_explained.md).
 
 ## Как устроен проект
 
@@ -25,7 +25,7 @@
 | Где | Что лежит | Почему там |
 |---|---|---|
 | GitHub (этот репозиторий) | код, блокноты, конфиги, lock-файлы, итоговые таблицы и рисунки | маленькое, нужна история изменений |
-| Google Drive, `MyDrive/unlearning_data/` | чекпоинты, результаты атак, логи, лабораторный журнал, lock-файлы окружений (в вехе M0 переедут в репозиторий) | уникальное, не должно пропасть при отключении Colab |
+| Google Drive, `MyDrive/unlearning_data/` | чекпоинты, результаты атак, логи, лабораторный журнал, таблицы для чтения (`data/`), lock-файлы окружений и ревизии моделей (`envs/`; в вехе M0 переедут в репозиторий) | уникальное, не должно пропасть при отключении Colab |
 | Диск машины Colab, `/content/` | кэш Hugging Face, скачанные модели, окружения Python | большое, но за минуты скачивается заново |
 
 Правила:
@@ -44,10 +44,12 @@ Machine-Unlearning-in-LLM/
 ├── README.md
 ├── .gitignore          # веса, чекпоинты, логи и секреты в git не попадают
 ├── docs/
-│   └── A_B_explained.md       # разбор частей A и B для новичка
+│   ├── A_B_explained.md       # разбор частей A и B для новичка
+│   └── C_explained.md         # разбор части C
 └── notebooks/
     ├── A_setup.ipynb          # часть A
-    └── B_environments.ipynb   # часть B
+    ├── B_environments.ipynb   # часть B
+    └── C_models_data.ipynb    # часть C
 ```
 
 Дальше по плану (блок 20) появятся `src/urec/`, `configs/`, `tests/`, `scripts/`, `envs/` и `results/`.
