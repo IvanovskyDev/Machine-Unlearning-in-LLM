@@ -16,6 +16,8 @@ dependencies = [
     "orjson",     # быстрая запись и чтение JSON (urec.io)
     "zstandard",  # сжатие больших журналов в .zst (urec.io)
     "huggingface-hub",  # скачивание файлов TOFU (urec.data.tofu)
+    "hydra-core",  # сборка конфигов из configs/ (urec.config)
+    "numpy",  # сид для NumPy в seed_everything (urec.config)
 ]
 
 [project.optional-dependencies]
@@ -41,3 +43,7 @@ markers = [
 python_version = "3.11"
 strict = true  # строгая проверка типов (план, блок 21)
 untyped_calls_exclude = ["zstandard"]  # в описании типов zstandard у close() нет аннотаций
+
+[[tool.mypy.overrides]]
+module = ["torch", "torch.*"]
+ignore_missing_imports = true  # в CI PyTorch нет, а seed_everything обходится без него

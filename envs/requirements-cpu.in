@@ -8,6 +8,8 @@
 orjson
 zstandard
 huggingface-hub
+hydra-core
+numpy
 
 # инструменты разработчика (pyproject.toml, dev)
 pytest
