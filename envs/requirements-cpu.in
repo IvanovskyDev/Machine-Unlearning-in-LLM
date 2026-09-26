@@ -10,6 +10,8 @@ zstandard
 huggingface-hub
 hydra-core
 numpy
+openai
+tenacity
 
 # нужны тестам: токенизатор моделей для золотого теста промпта victim (urec.serve.render)
 transformers
