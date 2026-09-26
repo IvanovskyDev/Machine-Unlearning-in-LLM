@@ -1,0 +1,39 @@
+# Пакет urec — код диплома: атаки, оценка ответов, анализ (план, блок 25, шаг 1).
+# Установка в режиме разработки: pip install -e ".[dev]" в папке репозитория;
+# правки в src/urec тогда видны сразу, без переустановки.
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "urec"
+version = "0.1.0"
+requires-python = ">=3.11"
+# Зависимости добавляются вместе с кодом, которому они нужны.
+# Точные версии здесь не пишутся: они закреплены lock-файлами в envs/.
+dependencies = [
+    "orjson",     # быстрая запись и чтение JSON (urec.io)
+    "zstandard",  # сжатие больших журналов в .zst (urec.io)
+]
+
+[project.optional-dependencies]
+# инструменты разработчика: тесты и проверки кода;
+# ruff нужной версии ставит сам pre-commit (версия — в .pre-commit-config.yaml)
+dev = ["pytest", "hypothesis", "mypy", "pre-commit"]
+
+[tool.setuptools.packages.find]
+where = ["src"]  # код пакета лежит в src/urec (план, блок 20)
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["external", "notebooks"]  # форк проверяют его авторы, блокноты только запускают
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["gpu: нужны GPU и модели, запускается вручную"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true  # строгая проверка типов (план, блок 21)
+untyped_calls_exclude = ["zstandard"]  # в описании типов zstandard у close() нет аннотаций
