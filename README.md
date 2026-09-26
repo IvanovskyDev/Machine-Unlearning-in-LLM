@@ -13,11 +13,11 @@
 | A. Подготовка: доступы, машина, инструменты | [`notebooks/A_setup.ipynb`](notebooks/A_setup.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/A_setup.ipynb) | работает |
 | B. Окружения Python: `unl` и `atk` | [`notebooks/B_environments.ipynb`](notebooks/B_environments.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/B_environments.ipynb) | работает |
 | C. Модели и данные TOFU | [`notebooks/C_models_data.ipynb`](notebooks/C_models_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/C_models_data.ipynb) | работает |
-| D. Первые запуски руками | [`notebooks/D_first_runs.ipynb`](notebooks/D_first_runs.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/D_first_runs.ipynb) | работает; обучение в шагах 12–13 переведено на веса во float32 (нужна A100) — готово к запуску |
-| E. Наш репозиторий, форк OpenUnlearning, архитектура | [`notebooks/E_repository.ipynb`](notebooks/E_repository.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/E_repository.ipynb) | готов к запуску |
-| F. Пакет `urec`, вехи M0–M8 | — | следующая |
+| D. Первые запуски руками | [`notebooks/D_first_runs.ipynb`](notebooks/D_first_runs.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/D_first_runs.ipynb) | работает; обучение в шагах 12–13 — на A100 с весами во float32 |
+| E. Наш репозиторий, форк OpenUnlearning, архитектура | [`notebooks/E_repository.ipynb`](notebooks/E_repository.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/E_repository.ipynb) | работает |
+| F. Пакет `urec`, вехи M0–M8 | — | идёт веха M0: готов кусок 1 из 3 — основа пакета, тесты, проверка на GitHub (CI) |
 
-Что и зачем делает каждая строка, объяснено для новичка: части A и B — в [`docs/A_B_explained.md`](docs/A_B_explained.md), часть C — в [`docs/C_explained.md`](docs/C_explained.md), часть D — в [`docs/D_explained.md`](docs/D_explained.md), часть E — в [`docs/E_explained.md`](docs/E_explained.md).
+Что и зачем делает каждая строка, объяснено для новичка: части A и B — в [`docs/A_B_explained.md`](docs/A_B_explained.md), часть C — в [`docs/C_explained.md`](docs/C_explained.md), часть D — в [`docs/D_explained.md`](docs/D_explained.md), часть E — в [`docs/E_explained.md`](docs/E_explained.md), часть F по вехам — в [`docs/F_M0_explained.md`](docs/F_M0_explained.md).
 
 ## Как устроен проект
 
@@ -35,7 +35,7 @@
 - Код и блокноты правятся в одном месте — на Windows — и уходят в GitHub; в Colab блокноты только открывают и запускают. Так правки не конфликтуют.
 - Блокнот выполняется сверху вниз. Машина Colab каждый раз новая, поэтому каждая сессия начинается с шагов 1–2 части B (Drive, папки, переменные окружения, токен Hugging Face, uv), а окружения `unl` и `atk` собираются заново из lock-файлов (шаг 14 части B). `pip install -U` в них не делается.
 - Репозиторий клонируется вместе с форком: `git clone --recurse-submodules https://github.com/IvanovskyDev/Machine-Unlearning-in-LLM.git`. Правка в форке — это два коммита: в форк и в этот репозиторий (разбор E, раздел 3).
-- Каждая часть и веха — в своей ветке и вливается через Pull Request; перед коммитом работают автопроверки pre-commit (разбор E, раздел 5).
+- Каждая часть и веха — в своей ветке и вливается через Pull Request; перед коммитом работают автопроверки pre-commit (разбор E, раздел 5). На GitHub те же проверки и все тесты запускает CI, и PR вливается только с зелёной галочкой (разбор F_M0, раздел 7).
 - Токен Hugging Face хранится только в Colab Secrets (`HF_TOKEN`) и никогда не попадает в код.
 - Каждый запуск записывается в журнал: где, чем, с какой командой, что получилось.
 - Всё новое сначала проверяется на Llama-3.2-1B и forget01, потом на 3B.
@@ -50,14 +50,16 @@ Machine-Unlearning-in-LLM/
 ├── .gitattributes             # скрипты .sh — всегда с переводами строк Linux
 ├── .gitmodules                # где лежит форк OpenUnlearning и за какой веткой он следит
 ├── .pre-commit-config.yaml    # автопроверки при коммите
-├── docs/                      # разборы частей для новичка: A_B, C, D, E
+├── .github/workflows/ci.yml   # проверка на GitHub (CI) при каждом PR
+├── pyproject.toml             # пакет urec: зависимости, настройки ruff, pytest, mypy
+├── docs/                      # разборы частей для новичка: A_B, C, D, E, F_M0
 ├── notebooks/                 # блокноты Colab частей A–E
 ├── scripts/                   # measure.sh, start_vllm.sh, stop_vllm.sh, check_atk.py
-├── envs/                      # lock-файлы окружений и ревизии моделей
+├── envs/                      # lock-файлы окружений, ревизии моделей, пакеты для тестов на CPU
 ├── external/open-unlearning/  # форк OpenUnlearning, ветка tau (submodule)
 ├── configs/                   # Hydra-конфиги urec (вехи M0–M1)
-├── src/urec/                  # пакет urec (с вехи M0)
-├── tests/                     # тесты на CPU (с вехи M0)
+├── src/urec/                  # пакет urec: пока types и io, дальше — по вехам M0–M8
+├── tests/unit/                # тесты на CPU
 ├── data/                      # маленькие данные: items, calibration, annotation, retain_regimes
 ├── results/
 │   ├── raw/                   # ссылка на Drive, создаётся в Colab, в git не попадает
@@ -67,4 +69,4 @@ Machine-Unlearning-in-LLM/
 └── thesis/                    # исходники диплома в LaTeX
 ```
 
-Пустые пока папки содержат файл `.gitkeep`. Файлы `pyproject.toml`, `Makefile` и `.github/workflows/ci.yml` появятся в вехе M0.
+Пустые пока папки содержат файл `.gitkeep`. `Makefile` появится позже, в части F.
