@@ -4,6 +4,11 @@ annotated-doc==0.0.5
     # via
     #   -c envs/requirements-atk.lock
     #   typer
+antlr4-python3-runtime==4.9.3
+    # via
+    #   -c envs/requirements-atk.lock
+    #   hydra-core
+    #   omegaconf
 anyio==4.15.1
     # via
     #   -c envs/requirements-atk.lock
@@ -51,6 +56,10 @@ huggingface-hub==1.10.2
     # via
     #   -c envs/requirements-atk.lock
     #   -r envs/requirements-cpu.in
+hydra-core==1.3.7
+    # via
+    #   -c envs/requirements-atk.lock
+    #   -r envs/requirements-cpu.in
 hypothesis==6.168.1
     # via
     #   -c envs/requirements-atk.lock
@@ -88,6 +97,14 @@ mypy-extensions==1.1.0
     #   mypy
 nodeenv==1.11.0
     # via pre-commit
+numpy==2.2.6
+    # via
+    #   -c envs/requirements-atk.lock
+    #   -r envs/requirements-cpu.in
+omegaconf==2.3.1
+    # via
+    #   -c envs/requirements-atk.lock
+    #   hydra-core
 orjson==3.12.0
     # via
     #   -c envs/requirements-atk.lock
@@ -96,6 +113,7 @@ packaging==26.3
     # via
     #   -c envs/requirements-atk.lock
     #   huggingface-hub
+    #   hydra-core
     #   pytest
 pathspec==1.1.1
     # via
@@ -124,6 +142,7 @@ pyyaml==6.0.3
     # via
     #   -c envs/requirements-atk.lock
     #   huggingface-hub
+    #   omegaconf
     #   pre-commit
 rich==15.0.0
     # via
