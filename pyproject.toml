@@ -18,6 +18,8 @@ dependencies = [
     "huggingface-hub",  # скачивание файлов TOFU (urec.data.tofu)
     "hydra-core",  # сборка конфигов из configs/ (urec.config)
     "numpy",  # сид для NumPy в seed_everything (urec.config)
+    "openai",  # запросы к серверам vLLM (urec.serve.client)
+    "tenacity",  # повторы запросов при сбоях (urec.serve.client)
 ]
 
 [project.optional-dependencies]
