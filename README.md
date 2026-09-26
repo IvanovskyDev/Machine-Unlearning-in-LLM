@@ -15,7 +15,7 @@
 | C. Модели и данные TOFU | [`notebooks/C_models_data.ipynb`](notebooks/C_models_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/C_models_data.ipynb) | работает |
 | D. Первые запуски руками | [`notebooks/D_first_runs.ipynb`](notebooks/D_first_runs.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/D_first_runs.ipynb) | работает; обучение в шагах 12–13 — на A100 с весами во float32 |
 | E. Наш репозиторий, форк OpenUnlearning, архитектура | [`notebooks/E_repository.ipynb`](notebooks/E_repository.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/E_repository.ipynb) | работает |
-| F. Пакет `urec`, вехи M0–M8 | — | идёт веха M0: готов кусок 1 из 3 — основа пакета, тесты, проверка на GitHub (CI) |
+| F. Пакет `urec`, вехи M0–M8 | — | идёт веха M0: готовы куски 1 и 2 из 3 — основа пакета, данные TOFU, тесты, проверка на GitHub (CI) |
 
 Что и зачем делает каждая строка, объяснено для новичка: части A и B — в [`docs/A_B_explained.md`](docs/A_B_explained.md), часть C — в [`docs/C_explained.md`](docs/C_explained.md), часть D — в [`docs/D_explained.md`](docs/D_explained.md), часть E — в [`docs/E_explained.md`](docs/E_explained.md), часть F по вехам — в [`docs/F_M0_explained.md`](docs/F_M0_explained.md).
 
@@ -35,7 +35,7 @@
 - Код и блокноты правятся в одном месте — на Windows — и уходят в GitHub; в Colab блокноты только открывают и запускают. Так правки не конфликтуют.
 - Блокнот выполняется сверху вниз. Машина Colab каждый раз новая, поэтому каждая сессия начинается с шагов 1–2 части B (Drive, папки, переменные окружения, токен Hugging Face, uv), а окружения `unl` и `atk` собираются заново из lock-файлов (шаг 14 части B). `pip install -U` в них не делается.
 - Репозиторий клонируется вместе с форком: `git clone --recurse-submodules https://github.com/IvanovskyDev/Machine-Unlearning-in-LLM.git`. Правка в форке — это два коммита: в форк и в этот репозиторий (разбор E, раздел 3).
-- Каждая часть и веха — в своей ветке и вливается через Pull Request; перед коммитом работают автопроверки pre-commit (разбор E, раздел 5). На GitHub те же проверки и все тесты запускает CI, и PR вливается только с зелёной галочкой (разбор F_M0, раздел 7).
+- Каждая часть и веха — в своей ветке и вливается через Pull Request; перед коммитом работают автопроверки pre-commit (разбор E, раздел 5). На GitHub те же проверки и все тесты запускает CI, и PR вливается только с зелёной галочкой (разбор F_M0, раздел 10).
 - Токен Hugging Face хранится только в Colab Secrets (`HF_TOKEN`) и никогда не попадает в код.
 - Каждый запуск записывается в журнал: где, чем, с какой командой, что получилось.
 - Всё новое сначала проверяется на Llama-3.2-1B и forget01, потом на 3B.
@@ -58,8 +58,8 @@ Machine-Unlearning-in-LLM/
 ├── envs/                      # lock-файлы окружений, ревизии моделей, пакеты для тестов на CPU
 ├── external/open-unlearning/  # форк OpenUnlearning, ветка tau (submodule)
 ├── configs/                   # Hydra-конфиги urec (вехи M0–M1)
-├── src/urec/                  # пакет urec: пока types и io, дальше — по вехам M0–M8
-├── tests/unit/                # тесты на CPU
+├── src/urec/                  # пакет urec: types, io, data; дальше — по вехам M0–M8
+├── tests/                     # тесты на CPU: unit/, integration/ (нужен интернет), fixtures/
 ├── data/                      # маленькие данные: items, calibration, annotation, retain_regimes
 ├── results/
 │   ├── raw/                   # ссылка на Drive, создаётся в Colab, в git не попадает

@@ -23,7 +23,7 @@ jobs:
       - run: pip install -r envs/requirements-cpu.txt && pip install -e ".[dev]"
       # те же автопроверки, что при коммите: ruff 0.6.9, конец файла, пробелы в конце строк
       - run: pre-commit run --all-files --show-diff-on-failure
-      # строгая проверка типов основы (слой 0)
-      - run: mypy src/urec/types.py src/urec/io.py
+      # строгая проверка типов: основа (слой 0) и данные (слой 1)
+      - run: mypy src/urec/types.py src/urec/io.py src/urec/data
       # тесты без GPU
       - run: pytest -m "not gpu" -q

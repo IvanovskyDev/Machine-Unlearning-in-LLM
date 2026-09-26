@@ -15,6 +15,7 @@ requires-python = ">=3.11"
 dependencies = [
     "orjson",     # быстрая запись и чтение JSON (urec.io)
     "zstandard",  # сжатие больших журналов в .zst (urec.io)
+    "huggingface-hub",  # скачивание файлов TOFU (urec.data.tofu)
 ]
 
 [project.optional-dependencies]
@@ -31,7 +32,10 @@ extend-exclude = ["external", "notebooks"]  # форк проверяют его
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["gpu: нужны GPU и модели, запускается вручную"]
+markers = [
+    "gpu: нужны GPU и модели, запускается вручную",
+    "network: нужен интернет — тест скачивает данные с Hugging Face",
+]
 
 [tool.mypy]
 python_version = "3.11"
