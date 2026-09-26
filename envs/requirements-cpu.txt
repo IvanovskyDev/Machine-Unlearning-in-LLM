@@ -56,6 +56,8 @@ huggingface-hub==1.10.2
     # via
     #   -c envs/requirements-atk.lock
     #   -r envs/requirements-cpu.in
+    #   tokenizers
+    #   transformers
 hydra-core==1.3.7
     # via
     #   -c envs/requirements-atk.lock
@@ -75,6 +77,10 @@ iniconfig==2.3.0
     # via
     #   -c envs/requirements-atk.lock
     #   pytest
+jinja2==3.1.6
+    # via
+    #   -c envs/requirements-atk.lock
+    #   -r envs/requirements-cpu.in
 librt==0.15.0
     # via
     #   -c envs/requirements-atk.lock
@@ -83,6 +89,10 @@ markdown-it-py==4.2.0
     # via
     #   -c envs/requirements-atk.lock
     #   rich
+markupsafe==3.0.3
+    # via
+    #   -c envs/requirements-atk.lock
+    #   jinja2
 mdurl==0.1.2
     # via
     #   -c envs/requirements-atk.lock
@@ -101,6 +111,7 @@ numpy==2.2.6
     # via
     #   -c envs/requirements-atk.lock
     #   -r envs/requirements-cpu.in
+    #   transformers
 omegaconf==2.3.1
     # via
     #   -c envs/requirements-atk.lock
@@ -115,6 +126,7 @@ packaging==26.3
     #   huggingface-hub
     #   hydra-core
     #   pytest
+    #   transformers
 pathspec==1.1.1
     # via
     #   -c envs/requirements-atk.lock
@@ -144,10 +156,19 @@ pyyaml==6.0.3
     #   huggingface-hub
     #   omegaconf
     #   pre-commit
+    #   transformers
+regex==2026.9.10
+    # via
+    #   -c envs/requirements-atk.lock
+    #   transformers
 rich==15.0.0
     # via
     #   -c envs/requirements-atk.lock
     #   typer
+safetensors==0.8.0
+    # via
+    #   -c envs/requirements-atk.lock
+    #   transformers
 shellingham==1.5.4
     # via
     #   -c envs/requirements-atk.lock
@@ -156,14 +177,24 @@ sortedcontainers==2.4.0
     # via
     #   -c envs/requirements-atk.lock
     #   hypothesis
+tokenizers==0.22.2
+    # via
+    #   -c envs/requirements-atk.lock
+    #   transformers
 tqdm==4.70.1
     # via
     #   -c envs/requirements-atk.lock
     #   huggingface-hub
+    #   transformers
+transformers==5.5.3
+    # via
+    #   -c envs/requirements-atk.lock
+    #   -r envs/requirements-cpu.in
 typer==0.27.2
     # via
     #   -c envs/requirements-atk.lock
     #   huggingface-hub
+    #   transformers
 typing-extensions==4.16.0
     # via
     #   -c envs/requirements-atk.lock

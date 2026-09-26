@@ -11,6 +11,10 @@ huggingface-hub
 hydra-core
 numpy
 
+# нужны тестам: токенизатор моделей для золотого теста промпта victim (urec.serve.render)
+transformers
+jinja2
+
 # инструменты разработчика (pyproject.toml, dev)
 pytest
 hypothesis

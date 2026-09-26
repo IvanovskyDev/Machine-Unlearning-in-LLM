@@ -15,9 +15,9 @@
 | C. Модели и данные TOFU | [`notebooks/C_models_data.ipynb`](notebooks/C_models_data.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/C_models_data.ipynb) | работает |
 | D. Первые запуски руками | [`notebooks/D_first_runs.ipynb`](notebooks/D_first_runs.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/D_first_runs.ipynb) | работает; обучение в шагах 12–13 — на A100 с весами во float32 |
 | E. Наш репозиторий, форк OpenUnlearning, архитектура | [`notebooks/E_repository.ipynb`](notebooks/E_repository.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/E_repository.ipynb) | работает |
-| F. Пакет `urec`, вехи M0–M8 | веха M0: [`notebooks/F_M0.ipynb`](notebooks/F_M0.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/F_M0.ipynb) | веха M0: код и данные готовы, блокнот готов к запуску |
+| F. Пакет `urec`, вехи M0–M8 | веха M0: [`notebooks/F_M0.ipynb`](notebooks/F_M0.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IvanovskyDev/Machine-Unlearning-in-LLM/blob/main/notebooks/F_M0.ipynb) | веха M0 выполнена; идёт веха M1: готов кусок 1 из 4 — промпт victim и золотой тест |
 
-Что и зачем делает каждая строка, объяснено для новичка: части A и B — в [`docs/A_B_explained.md`](docs/A_B_explained.md), часть C — в [`docs/C_explained.md`](docs/C_explained.md), часть D — в [`docs/D_explained.md`](docs/D_explained.md), часть E — в [`docs/E_explained.md`](docs/E_explained.md), часть F по вехам — в [`docs/F_M0_explained.md`](docs/F_M0_explained.md).
+Что и зачем делает каждая строка, объяснено для новичка: части A и B — в [`docs/A_B_explained.md`](docs/A_B_explained.md), часть C — в [`docs/C_explained.md`](docs/C_explained.md), часть D — в [`docs/D_explained.md`](docs/D_explained.md), часть E — в [`docs/E_explained.md`](docs/E_explained.md), часть F по вехам — в [`docs/F_M0_explained.md`](docs/F_M0_explained.md) и [`docs/F_M1_explained.md`](docs/F_M1_explained.md).
 
 ## Как устроен проект
 
@@ -52,14 +52,14 @@ Machine-Unlearning-in-LLM/
 ├── .pre-commit-config.yaml    # автопроверки при коммите
 ├── .github/workflows/ci.yml   # проверка на GitHub (CI) при каждом PR
 ├── pyproject.toml             # пакет urec: зависимости, настройки ruff, pytest, mypy
-├── docs/                      # разборы частей для новичка: A_B, C, D, E, F_M0
+├── docs/                      # разборы частей для новичка: A_B, C, D, E, F_M0, F_M1
 ├── notebooks/                 # блокноты Colab частей A–F
 ├── scripts/                   # check_env.sh, measure.sh, start_vllm.sh, stop_vllm.sh, check_atk.py
 ├── envs/                      # lock-файлы окружений, ревизии моделей, пакеты для тестов на CPU
 ├── external/open-unlearning/  # форк OpenUnlearning, ветка tau (submodule)
 ├── configs/                   # Hydra-конфиги urec: main, paths, data
-├── src/urec/                  # пакет urec: types, io, config, data, cli; дальше — по вехам M1–M8
-├── tests/                     # тесты на CPU: unit/, integration/ (нужен интернет), fixtures/
+├── src/urec/                  # пакет urec: types, io, config, data, cli, serve; дальше — по вехам M1–M8
+├── tests/                     # тесты на CPU: unit/, integration/ (нужен интернет), golden/, fixtures/
 ├── data/                      # маленькие данные: items (вопросы TOFU), позже calibration, annotation, retain_regimes
 ├── results/
 │   ├── raw/                   # ссылка на Drive, создаётся в Colab, в git не попадает
